@@ -29,7 +29,7 @@ jobs:
         run: git add -A
 
       - name: Commit
-        run: git commit -c user.name='Github Action' -c user.email='nobody@github.com' -m "Build website"
+        run: git -c user.name='Github Action' -c user.email='nobody@github.com' commit -m "Build website"
 
       - id: deploy
         name: Deploy to dokku
