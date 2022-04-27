@@ -25,6 +25,12 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      - name: Add file to git
+        run: git add -A
+
+      - name: Commit
+        run: git commit -m "Build website"
+
       - id: deploy
         name: Deploy to dokku
         uses: idoberko2/dokku-deploy-github-action@v1
