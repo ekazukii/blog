@@ -14,23 +14,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Update theme
-        run: git submodule update --init --recursive
-
-      - name: Setup hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: "0.91.2"
-
-      - name: Build
-        run: hugo --minify
-
-      - name: Add file to git
-        run: git add -A
-
-      - name: Commit
-        run: git -c user.name='Github Action' -c user.email='nobody@github.com' commit -m "Build website"
-
       - id: deploy
         name: Deploy to dokku
         uses: idoberko2/dokku-deploy-github-action@v1
