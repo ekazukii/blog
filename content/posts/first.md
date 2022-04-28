@@ -1,8 +1,9 @@
 ---
 author: Ekazuki
 title: Créer sa propre PaaS (Heroku, Netlify) avec Dokku.
-date: 2022-04-27
-description: My first blog post ever !
+date: 2022-04-26T22:00:00+00:00
+description: Comment créer un clone de Heroku / Vercel sur votre propre machine en
+  utilisant Dokku.
 tags:
 - self hosted
 - docker
@@ -10,7 +11,6 @@ tags:
 hideMeta: false
 searchHidden: false
 ShowBreadCrumbs: true
-draft: true
 
 ---
 #### Pourquoi faire sa propre Platform as a Service ? / Présentation Dokku
@@ -63,27 +63,27 @@ Et voilà ! C'est fait, vous pouvez désormais accéder à votre application à 
 
 #### Deployer une application React avec Dokku
 
-Comme beaucoup de stack le déploiement d'une application react demande quelques étapes de plus. En effet contrairement à une application nodejs dokku ne détecte pas le buildpack automatiquement, il faut donc faire un fichier .buildpacks dans la racine du projet et y inclure le buildpack de React
+Comme beaucoup de stack le déploiement d'une application react demande quelques étapes de plus. En effet contrairement à une application nodejs dokku ne détecte pas le buildpack automatiquement, il faut donc faire un fichier .buildpacks dans la racine du projet et y inclure le buildpack de React.
 
     echo "https://github.com/mars/create-react-app-buildpack.git" > .buildpacks
 
 Il faut ensuite modifier le fichier Procfile pour dire à Dokku de servir le dossier. On remplace donc le `web: npm start` par `web: bin/boot` qui servira le dossier build générer par react.
 
-Et c'est tout ce qu'il faut pour déployer une application react sur Dokku, vous pouvez voir la liste des quelque 9000 buildpacks créer par la communauté à l'adresse https://elements.heroku.com/buildpacks. Vous pouvez aussi installer plusieurs buildpacks au sein du même projet (C'est ce que fait le buildpack React, il installe celui de node pour build le projet et celui de nginx pour le servir.).
+Et c'est tout ce qu'il faut pour déployer une application react sur Dokku, vous pouvez voir la liste des quelque 9 000 buildpacks créer par la communauté à l'adresse https://elements.heroku.com/buildpacks. Vous pouvez aussi installer plusieurs buildpacks au sein du même projet (C'est ce que fait le buildpack React, il installe celui de node pour build le projet et celui de nginx pour le servir.).
 
 #### Ajouter des certificats SSL
 
-Sauf que pour le moment vos applications sont servit uniquement en http pas en https, pour se faire il y a deux options : 1. vous avez déjà un certificat ssl pour votre domaine et 2. Vous n'avez pas encore de certificat ssl
+Sauf que pour le moment, vos applications sont servies uniquement en http pas en https, pour se faire il y a deux options : 1. vous avez déjà un certificat ssl pour votre domaine et 2. Vous n'avez pas encore de certificat ssl.
 
-###### 1. Importer ses certificats sur dokku
+###### 1. Importer ses certificats sur dokku.
 
-Vous devez donc avoir au moins deux fichier, un fichier .crt qui contient le cerficat de votre site et la clef privé associé en .key. Il faut donc associé votre certificat aux applications dokku que vous voulez passer en https pour cela rien de plus simple
+Vous devez donc avoir au moins deux fichiers, un fichier .crt qui contient le certificiat de votre site et la clef privé associé en .key. Il faut donc associé votre certificat aux applications dokku que vous voulez passer en https pour cela rien de plus simple
 
     dokku certs:add node-app server.crt server.key
 
-###### 2. Vous n'avez pas encore de certificat
+###### 2. Vous n'avez pas encore de certificat.
 
-Si vous n'avez pas de certificat ssl avec votre domaine ce n'est pas un problème car dokku à une plugin permettant de generer automatiquement un certificat ssl via [Let's Encrypt](https://letsencrypt.org/fr/). Pour cela il suffit de l'installer depuis github, de configurer un email (obligatoire pour let's encrypt) et d'activer le cron-job permettant de renouveller le certificat automatiquement.
+Si vous n'avez pas de certificat ssl avec votre domaine ce n'est pas un problème car dokku à un plugin permettant de générer automatiquement un certificat ssl via [Let's Encrypt](https://letsencrypt.org/fr/). Pour cela, il suffit de l'installer depuis github, de configurer un email (obligatoire pour let's encrypt) et d'activer le cron-job permettant de renouveler le certificat automatiquement.
 
     sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
     dokku config:set --global DOKKU_LETSENCRYPT_EMAIL=your-email@your.domain.com
@@ -92,3 +92,7 @@ Si vous n'avez pas de certificat ssl avec votre domaine ce n'est pas un problèm
 Finalement on ajoute le certificat à notre application
 
     dokku letsencrypt:enable node-app
+
+J'espère que vous avez apprécié cet article et qu'il vous aura été utile, si vous avez besoin de plus d'information vous pouvez aller faire un tour sur la [documentation de Dokku](https://dokku.com/docs/getting-started/installation/). 
+
+N'hésitez pas à me suivre sur [Twitter](https://twitter.com/ekazukiii) !
