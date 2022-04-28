@@ -21,7 +21,7 @@ params:
   keywords: [Blog, Portfolio, Development, ComputerScience]
   author: Me
   # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  images: ["logo.png"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
@@ -51,11 +51,9 @@ params:
   assets:
     disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "<link / abs url>"
-    favicon16x16: "<link / abs url>"
-    favicon32x32: "<link / abs url>"
-    apple_touch_icon: "<link / abs url>"
-    safari_pinned_tab: "<link / abs url>"
+    favicon: "favicon.ico"
+    apple_touch_icon: "logo192.png"
+    safari_pinned_tab: "logo192.png"
 
   # profile-mode
   profileMode:
@@ -85,7 +83,7 @@ params:
 
   analytics:
     google:
-      SiteVerificationTag: "XYZabc"
+      SiteVerificationTag: "G-63G6KFBH0Y"
     bing:
       SiteVerificationTag: "XYZabc"
     yandex:
@@ -115,6 +113,7 @@ menu:
       name: Eka'
       url: https://ekazuki.fr
       weight: 30
+
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
