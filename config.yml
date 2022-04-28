@@ -1,4 +1,4 @@
-baseURL: "https://ekazuki.fr/"
+baseURL: "https://blog.ekazuki.fr/"
 title: Ekazuki's blog
 paginate: 5
 theme: PaperMod
@@ -8,7 +8,7 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: UA-123-45
+googleAnalytics: G-63G6KFBH0Y
 
 minify:
   disableXML: true
@@ -18,7 +18,7 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: ExampleSite
   description: "ExampleSite description"
-  keywords: [Blog, Portfolio, PaperMod]
+  keywords: [Blog, Portfolio, Development, ComputerScience]
   author: Me
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -65,8 +65,8 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+    Title: "Salut \U0001F44B"
+    Content: Ici, je partage des informations parfois utiles, parfois inutiles.
 
   socialIcons:
     - name: twitter
