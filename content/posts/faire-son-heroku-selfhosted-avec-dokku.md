@@ -14,13 +14,13 @@ searchHidden: false
 ShowBreadCrumbs: true
 ---
 
-#### Pourquoi faire sa propre Platform as a Service ? / Présentation Dokku
+### Pourquoi faire sa propre Platform as a Service ?
 
-Les PaaS modernes possèdent d'innombrables avantages à commencer par la simplicité d'utilisation, plus besoin d'être devops pour déployer son site sur internet, il suffit de quelques cliques. Mais ces solutions ne sont pas magiques, elles coûtent en général plus cher que les services d'hostings traditionnels et permettent moins de contrôle sur les machines hébergeant votre serveur.
+Les PaaS modernes possèdent d'innombrables avantages à commencer par la simplicité d'utilisation, plus besoin d'être devops pour déployer son site sur internet, il suffit de quelques clics. Mais ces solutions ne sont pas magiques, elles coûtent en général plus cher que les services d'hostings traditionnels et permettent moins de contrôle sur les machines hébergeant votre serveur.
 
 C'est pour cela que nous allons voir dans cet article comment installer une PaaS sur notre propre hardware (ou sur votre VPS / serveur dédié).
 
-#### Installation de Dokku / clef SSH et configuration
+### Installation de Dokku
 
 Pour l'installation, vous devez avoir un serveur tournant avec Ubuntu 18.04/20.04 ou Debian 9+. Dokku est compatible avec des architectures ARM si vous comptez par exemple le faire tourner sur une Raspberry PI.
 
@@ -47,7 +47,7 @@ dokku domains:set-global site.com
 
 Et voila, c'est tout ! L'installation de dokku sur votre serveur est terminé. On va ensuite déployer une application nodejs simple.
 
-#### Installation d'une application nodejs simple
+### Installation d'une application Node.js
 
 Un des principaux atouts de Dokku est qu'il embarque les buildpacks de Heroku (en utilisant [herokuish](https://github.com/gliderlabs/herokuish)) et donc ses milliers d'intégrations. Dans notre cas, on va installer l'application Node.js d'exemple de Heroku.
 
@@ -72,9 +72,9 @@ git remote add dokku ssh://dokku@IP_ADDRESS/node-app
 git push dokku master
 ```
 
-Et voilà ! C'est fait, vous pouvez désormais accéder à votre application à l'adresse \`[http://blog.SITE.COM]()
+Et voilà ! C'est fait, vous pouvez désormais accéder à votre application à l'adresse [http://blog.SITE.COM]()
 
-#### Deployer une application React avec Dokku
+### Deployer une application React avec Dokku
 
 Comme beaucoup de stack le déploiement d'une application react demande quelques étapes de plus. En effet contrairement à une application nodejs dokku ne détecte pas le buildpack automatiquement, il faut donc faire un fichier .buildpacks dans la racine du projet et y inclure le buildpack de React.
 
@@ -86,19 +86,19 @@ Il faut ensuite modifier le fichier Procfile pour dire à Dokku de servir le dos
 
 Et c'est tout ce qu'il faut pour déployer une application react sur Dokku, vous pouvez voir la liste des quelque 9 000 buildpacks créer par la communauté à l'adresse https://elements.heroku.com/buildpacks. Vous pouvez aussi installer plusieurs buildpacks au sein du même projet (C'est ce que fait le buildpack React, il installe celui de node pour build le projet et celui de nginx pour le servir.).
 
-#### Ajouter des certificats SSL
+### Ajouter des certificats SSL
 
 Sauf que pour le moment, vos applications sont servies uniquement en http pas en https, pour se faire il y a deux options : 1. vous avez déjà un certificat ssl pour votre domaine et 2. Vous n'avez pas encore de certificat ssl.
 
-###### 1. Importer ses certificats sur dokku.
+#### 1. Importer ses certificats sur dokku.
 
-Vous devez donc avoir au moins deux fichiers, un fichier .crt qui contient le certificiat de votre site et la clef privé associé en .key. Il faut donc associé votre certificat aux applications dokku que vous voulez passer en https pour cela rien de plus simple
+Vous devez donc avoir au moins deux fichiers, un fichier .crt qui contient le certificiat de votre site et la clef privé associée en .key. Il faut donc associé votre certificat aux applications dokku que vous voulez passer en https pour cela rien de plus simple
 
 ```shell
 dokku certs:add node-app server.crt server.key
 ```
 
-###### 2. Vous n'avez pas encore de certificat.
+#### 2. Vous n'avez pas encore de certificat.
 
 Si vous n'avez pas de certificat ssl avec votre domaine ce n'est pas un problème car dokku à un plugin permettant de générer automatiquement un certificat ssl via [Let's Encrypt](https://letsencrypt.org/fr/). Pour cela, il suffit de l'installer depuis github, de configurer un email (obligatoire pour let's encrypt) et d'activer le cron-job permettant de renouveler le certificat automatiquement.
 
