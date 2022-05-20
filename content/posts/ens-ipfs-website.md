@@ -2,7 +2,7 @@
 author: Ekazuki
 title: Heberger un site internet sur la blockchain avec ENS et IPFS
 date: 2022-04-27T22:00:00+00:00
-description: EZZZZ
+description: Heberger un site internet statique sur IPFS en utilisant Etheureum Name Service ou Unstoppable Domains
 tags:
   - blockchain
   - ENS
