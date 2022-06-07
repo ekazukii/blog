@@ -1,7 +1,7 @@
 ---
 author: Ekazuki
 title: Pourquoi passer de React à NuxtJS (donc Vue.js)
-date: 2022-06-07T22:00:00+00:00
+date: 2022-06-06T22:00:00+00:00
 description: Les nouvelles fonctionnalités de Nuxt3 et pourquoi faudrait-il l'utiliser ?
 tags:
   - React
